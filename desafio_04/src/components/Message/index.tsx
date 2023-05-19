@@ -1,10 +1,9 @@
-import { useMemo } from 'react'
+import { PropsWithChildren, useMemo } from 'react'
 
 type MessageProps = {
   name: string
   time: string
   received?: boolean
-  children: React.ReactNode
 }
 
 export const Message = ({
@@ -12,7 +11,7 @@ export const Message = ({
   time,
   received = false,
   children,
-}: MessageProps) => {
+}: PropsWithChildren<MessageProps>) => {
   const myMessageBoxClasses = `mt-8 ${!received && 'self-end'}`
 
   const myTextClasses = !received ? 'text-right' : ''

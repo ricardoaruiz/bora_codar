@@ -8,23 +8,28 @@ type InputMessageProps = ComponentPropsWithRef<'input'> & {
 type InputMessageRef = React.Ref<HTMLInputElement>
 
 const InputMessage = React.forwardRef(
-  ({ onSend, ...props }: InputMessageProps, ref: InputMessageRef) => {
+  (
+    { onSend, className, ...props }: InputMessageProps,
+    ref: InputMessageRef
+  ) => {
     return (
-      <div className="flex justify-between px-6 py-3 bg-chat-black-400 rounded-full">
-        <input
-          ref={ref}
-          className={`
-                w-full
-                bg-chat-black-400
-                outline-none
-                placeholder:text-chat-white
-                text-chat-white
-              `}
-          {...props}
-        />
-        <button onClick={onSend}>
-          <img src={send} alt="Enviar" />
-        </button>
+      <div className={className}>
+        <div className="flex justify-between px-6 py-3 bg-chat-black-400 rounded-full">
+          <input
+            ref={ref}
+            className={`
+                  w-full
+                  bg-chat-black-400
+                  outline-none
+                  placeholder:text-chat-white
+                  text-chat-white
+                `}
+            {...props}
+          />
+          <button onClick={onSend}>
+            <img src={send} alt="Enviar" />
+          </button>
+        </div>
       </div>
     )
   }

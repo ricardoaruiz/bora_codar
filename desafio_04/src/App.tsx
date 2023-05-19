@@ -1,7 +1,7 @@
 import { useRef } from 'react'
 
 import avatar from '@/assets/images/foto.png'
-import { Header, InputMessage, Message } from '@/components'
+import { Header, InputMessage, Message, Messages } from '@/components'
 
 function App() {
   const inputMessageRef = useRef<HTMLInputElement | null>(null)
@@ -21,21 +21,14 @@ function App() {
         rounded-lg
       "
     >
-      {/* Header */}
       <Header
         avatar={avatar}
         name="Cecilia Sassaki"
-        onClose={() => console.log('close chat')}
         isOnline={true}
+        onClose={() => console.log('close chat')}
       />
 
-      {/* Mensagens */}
-      <div className="px-0 py-4 md:px-0 flex-1 flex flex-col h-[calc(100vh-230px)] overflow-y-auto">
-        {/* Data e hora */}
-        <h3 className="text-xs text-chat-white font-normal text-center">
-          Hoje 11:30
-        </h3>
-
+      <Messages date="Hoje 11h30">
         <Message name="Cecilia" time="11:30" received>
           Tive uma ideia incrível para um projeto! 😍
         </Message>
@@ -49,19 +42,16 @@ function App() {
         <Message name="Você" time="11:33">
           #boraCodar! 🚀
         </Message>
-      </div>
+      </Messages>
 
-      {/* Campo de mensagem */}
-      <div className="h-20 pt-6">
-        <InputMessage
-          ref={inputMessageRef}
-          placeholder="Digite a sua mensagem"
-          onSend={() => {
-            console.log(inputMessageRef.current?.value)
-            if (inputMessageRef.current) inputMessageRef.current.value = ''
-          }}
-        />
-      </div>
+      <InputMessage
+        ref={inputMessageRef}
+        placeholder="Digite a sua mensagem"
+        onSend={() => {
+          console.log(inputMessageRef.current?.value)
+          if (inputMessageRef.current) inputMessageRef.current.value = ''
+        }}
+      />
     </section>
   )
 }
